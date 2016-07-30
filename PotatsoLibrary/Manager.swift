@@ -302,7 +302,12 @@ extension Manager {
         mainConf["global-mode"] = defaultToProxy
 //        mainConf["debug"] = 1024+65536+1
 //        mainConf["debug"] = 131071
-        mainConf["debug"] = mainConf["debug"] as! Int + 4096
+        
+        mainConf["debug"] = 4096
+        if (mainConf["debug"] != nil) {
+             mainConf["debug"] = mainConf["debug"] as! Int + 4096
+        }
+        
         mainConf["actionsfile"] = userActionUrl.path!
 
         let mainContent = mainConf.map { "\($0) \($1)"}.joinWithSeparator("\n")

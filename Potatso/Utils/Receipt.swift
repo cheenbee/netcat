@@ -14,11 +14,14 @@ class Receipt: NSObject, SKRequestDelegate {
 
     static let shared = Receipt()
 
-    private let keychain = Keychain(service: "com.touchingapp.potatso")
+    private let keychain = Keychain(service: "com.theirfun.slogan")
 
     private override init() {}
 
     func validate() {
+        return
+        // 下面是appstore的购买验证
+        /*
         if AppEnv.isTestFlight {
             if !validateKeychainAppStore() {
                 failAndTerminate()
@@ -30,6 +33,7 @@ class Receipt: NSObject, SKRequestDelegate {
                 failAndTerminate()
             }
         }
+        */
     }
 
     private func markKeychainAppStore() {
