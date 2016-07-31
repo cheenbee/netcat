@@ -112,11 +112,20 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
         }).onCellSelection({ [unowned self] (cell, row) -> () in
             cell.setSelected(false, animated: true)
             var shareItems: [AnyObject] = []
-            shareItems.append("Potatso [https://itunes.apple.com/us/app/id1070901416]")
+            shareItems.append("Slogan [https://itunes.apple.com/us/app/id1139455098]")
             shareItems.append(UIImage(named: "AppIcon60x60")!)
             let shareVC = UIActivityViewController(activityItems: shareItems, applicationActivities: nil)
-            self.presentViewController(shareVC, animated: true, completion: nil)
+            // self.presentViewController(shareVC, animated: true, completion: nil)
+            //if iPhone
+            if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone) {
+                self.presentViewController(shareVC, animated: true, completion: nil)
+            } else {  //if iPad
+                // Change Rect to position Popover
+                let popup = UIPopoverController(contentViewController: shareVC)
+                popup.presentPopoverFromRect(CGRectMake(self.view.frame.size.width/2, self.view.frame.size.height/4, 0, 0), inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
+            }
         })
+        /*
         form +++ Section()
             <<< LabelRow() {
                 $0.title = "Follow on Twitter".localized()
@@ -162,6 +171,7 @@ class SettingsViewController: FormViewController, MFMailComposeViewControllerDel
                 $0.title = "Version".localized()
                 $0.value = AppEnv.fullVersion
             }
+            */
 
     }
     
